@@ -24,9 +24,25 @@ plotGraph <- function(vis_data,xaxis,yaxis,species){
   
   #Filter to only selected species
   vis_data <- filter(vis_data, Species == species)
+  
+  f <- list(
+    family = "Helvetica, sans-serif",
+    size = 18,
+    color = "#7f7f7f"
+  )
+  x <- list(
+    title = xaxis,
+    titlefont = f
+  )
+  y <- list(
+    title = yaxis,
+    titlefont = f
+  )
+    
 
   #Return plot
   return (plot_ly(data = vis_data, x = eval(parse(text = xaxis)), y = eval(parse(text = yaxis)), mode = "markers",
-  color = eval(parse(text = yaxis)), marker = list(size=10)))
+  color = eval(parse(text = yaxis)), marker = list(size=10)) %>%
+    layout(xaxis = x, yaxis = y))
 
 }
